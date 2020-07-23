@@ -1,7 +1,9 @@
 <template>
     <div>
-        <div class="text-center">
-            <p class="display-1 font-weight-black">
+        <div class="text-center"><br>
+            <p class="display-1 font-weight-black"> <br><v-icon x-large color="blue-grey darken-1" style="font-size:30px">
+                mdi-book-open-variant
+            </v-icon>
                 Add Coures
             </p>
         </div>
@@ -52,12 +54,12 @@
                             placeholder="Course Status"
                     ></v-select>
 
-                    <div class="text-center">
-                        <v-btn color="red" dark @click="$router.push({name : ''})">confirm</v-btn>
-                    </div>
 
                 </v-col>
 
+                <div class="text-center">
+                    <v-btn color="red" dark @click="$router.push({name : 'Id course'})">confirm</v-btn>
+                </div>
             </v-card>
         </div>
     </div>
@@ -65,7 +67,7 @@
 
 <script>
     export default {
-        name: "Add student",
+        name: "Add course",
         data: () => ({
             items: ['Available', 'Unavailable'],
         }),

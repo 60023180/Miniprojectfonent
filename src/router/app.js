@@ -24,6 +24,11 @@ export default {
             name: "Id student",
             component:  () => import('../views/app/Id student')
         },
+        {
+            path: '/id course',
+            name: "Id course",
+            component:  () => import('../views/app/Id course')
+        },
 
         ]
 }

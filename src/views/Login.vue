@@ -21,7 +21,8 @@
                                     dark
                                     flat
                             >
-                                <v-toolbar-title class="font-weight-black">Cram School</v-toolbar-title>
+                                <v-toolbar-title  class="font-weight-black"><v-icon x-large color="grey darken-3">
+                                    mdi-brain</v-icon>CRAM SCHOOL</v-toolbar-title>
                                 <v-spacer></v-spacer>
                                 <v-tooltip bottom>
                                 </v-tooltip>

@@ -5,7 +5,7 @@
                 <v-icon x-large color="blue-grey darken-1" class="ma-16" style="font-size:180px"  >
                     mdi-book-open-variant
                 </v-icon>
-                <v-btn color="deep-orange accent-1" dark @click="$router.push({name : ''})">course</v-btn>
+                <v-btn color="deep-orange accent-1" dark @click="$router.push({name : 'Id course'})">course</v-btn>
                 <br>
                 <v-icon x-large color="blue-grey darken-1" class="ma-16" style="font-size:180px">
                     mdi-account-group

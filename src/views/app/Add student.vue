@@ -1,7 +1,9 @@
 <template>
 <div>
     <div class="text-center">
-        <p class="display-1 font-weight-black">
+        <p class="display-1 font-weight-black"><v-icon x-large color="blue-grey darken-1" style="font-size:30px">
+            mdi-account-group
+        </v-icon>
             Add Student
         </p>
     </div>

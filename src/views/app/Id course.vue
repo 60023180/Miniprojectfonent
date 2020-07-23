@@ -7,7 +7,7 @@
     >
         <template v-slot:top>
             <v-toolbar flat color="white">
-                <v-toolbar-title class="display-1 font-weight-black">Student</v-toolbar-title>
+                <v-toolbar-title class="display-1 font-weight-black">Course</v-toolbar-title>
 
                 <v-dialog v-model="dialog" max-width="500px">
                     <v-card>
@@ -16,31 +16,49 @@
                             <v-container>
                                 <v-row>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-text-field v-model="editedItem.student_id" label="Student ID"></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-select
-                                                :items="items"
-                                                v-model="editedItem.course_id"
-                                                label="course_id"
-                                                placeholder=""
-                                        ></v-select>
+                                        <v-text-field v-model="editedItem.course_id" label="Course Id"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
                                         <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-textarea
-                                                name="input-7-4"
-                                                label="Address"
-                                                v-model="editedItem.address"
-                                        ></v-textarea>
+
+                                        <v-menu
+                                                ref="menu"
+                                                v-model="menu"
+                                                :close-on-content-click="false"
+                                                :return-value.sync="date"
+                                                transition="scale-transition"
+                                                offset-y
+                                                min-width="290px"
+                                        >
+                                            <template v-slot:activator="{ on, attrs }" >
+                                                <v-text-field
+                                                        v-model="date"
+                                                        label="Teaching Period"
+                                                        prepend-icon=""
+                                                        readonly
+                                                        v-bind="attrs"
+                                                        v-on="on"
+                                                ></v-text-field>
+                                            </template>
+                                            <v-date-picker v-model="date" no-title scrollable>
+                                                <v-spacer></v-spacer>
+                                                <v-btn text color="red" @click="menu = false">Cancel</v-btn>
+                                                <v-btn text color="red" @click="$refs.menu.save(date)">OK</v-btn>
+                                            </v-date-picker>
+                                        </v-menu>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-text-field v-model="editedItem.contact_details" label="Contact Details"></v-text-field>
+                                        <v-text-field v-model="editedItem.teacher_name" label="Teacher name"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-text-field v-model="editedItem.parent_contact" label="Parent Contact"></v-text-field>
+                                        <v-select
+                                                v-model="editedItem.course_status"
+                                                :items="items"
+                                                label=""
+                                                placeholder="Course Status"
+                                        ></v-select>
                                     </v-col>
                                 </v-row>
                             </v-container>
@@ -76,41 +94,40 @@
 
 <script>
     export default {
-        name: "Student",
+        name: "Course",
         data: () => ({
-            items: ['EN124', 'TH555'],
+            items: ['Available', 'Unavailable'],
+            date: new Date().toISOString().substr(0, 10),
+            menu: false,
             dialog: false,
             headers: [
                 {
-                    text: 'Student ID',
+                    text: 'Course ID',
                     align: 'start',
                     sortable: false,
-                    value: 'student_id',
+                    value: 'course_id',
                 },
-                { text: 'Course ID', value: 'course_id' },
                 { text: 'Name', value: 'name' },
-                { text: 'Address', value: 'address' },
-                { text: 'Contact Details', value: 'contact_details' },
-                { text: 'Parent Contact', value: 'parent_contact' },
+                { text: 'Teaching period', value: 'teaching_period' },
+                { text: 'Teacher name', value: 'teacher_name' },
+                { text: 'Course status', value: 'course_status' },
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
             desserts: [],
             editedIndex: -1,
             editedItem: {
-                student_id: '',
-                course_id: 0,
+                course_id: '',
                 name: 0,
-                address: 0,
-                contact_details: 0,
-                parent_contact: 0,
+                teaching_period: 0,
+                teacher_name: 0,
+                course_status: 0,
             },
             defaultItem: {
-                student_id: '',
-                course_id: 0,
+                course_id: '',
                 name: 0,
-                address: 0,
-                contact_details: 0,
-                parent_contact: 0,
+                teaching_period: 0,
+                teacher_name: 0,
+                course_status: 0,
             },
         }),
 
@@ -129,21 +146,18 @@
             initialize () {
                 this.desserts = [
                     {
-                        student_id: '001',
                         course_id: 'EN555',
-                        name: 'บูม',
-                        address: '-',
-                        contact_details: '0634567842',
-                        parent_contact: 'พ่อ แหลมแท้',
+                        name: 'English',
+                        teaching_period: '2020/07/23',
+                        teacher_name: 'คุณครูไวน์',
+                        course_status: 'Available',
                     },
                     {
-                        student_id: '002',
                         course_id: 'TH555',
-                        name: 'เตย',
-                        address: '-',
-                        contact_details: '064857328',
-                        parent_contact: 'แม่ ประวงค์',
-
+                        name: 'Thai',
+                        teaching_period: '2020/07/23',
+                        teacher_name: 'คุณครูทราย',
+                        course_status: 'Available',
                     }
                 ]
             },
@@ -156,7 +170,7 @@
 
             deleteItem (item) {
                 const index = this.desserts.indexOf(item)
-                confirm('Are you sure you want to delete this') && this.desserts.splice(index, 1)
+                confirm('Are you sure you want to delete this?') && this.desserts.splice(index, 1)
             },
 
             close () {
@@ -175,9 +189,6 @@
                 }
                 this.close()
             },
-
-
         },
-
     }
 </script>
