@@ -158,6 +158,13 @@
                         teaching_period: '2020/07/23',
                         teacher_name: 'คุณครูทราย',
                         course_status: 'Available',
+                    },
+                    {
+                        course_id: '1',
+                        name: 'Thai',
+                        teaching_period: '2020/07/29',
+                        teacher_name: 'คุณครูMama',
+                        course_status: 'Available',
                     }
                 ]
             },

@@ -33,7 +33,7 @@
                                             label="Login"
                                             name="login"
                                             prepend-icon="mdi-account"
-                                            type="text"
+                                            type="username"
                                     ></v-text-field>
 
                                     <v-text-field
@@ -60,9 +60,13 @@
 
 <script>
     export default {
-        props: {
-            source: String,
-        },
+        name : "Login",
+        data : () => ({
+
+        }),
+        methods : {
+
+        }
     }
 
 </script>

@@ -144,6 +144,15 @@
                         contact_details: '064857328',
                         parent_contact: 'แม่ ประวงค์',
 
+                    },
+                    {
+                        student_id: '003',
+                        course_id: 'TH555',
+                        name: 'ไวน์',
+                        address: '-',
+                        contact_details: '0987654321',
+                        parent_contact: 'พ่อ มาตรศาลา',
+
                     }
                 ]
             },
